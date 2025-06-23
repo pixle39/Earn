@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdWatch Premium | Earn Money Watching Ads</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4bb543;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .dashboard {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 60px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background: var(--light);
+            width: 22%;
+            min-width: 200px;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card h3 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-card p {
+            color: #666;
+        }
+        
+        .ad-container {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+        
+        .ad-container h2 {
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .ad-content {
+            margin: 20px 0;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .ad-content img {
+            max-width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+        }
+        
+        .timer {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 20px 0;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 50px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            text-align: center;
+            line-height: 20px;
+            color: white;
+            font-size: 12px;
+            transition: width 0.5s ease;
+        }
+        
+        .ceo-message {
+            background: linear-gradient(135deg, #f5f7ff, #e6f0ff);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 60px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ceo-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 30px;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .ceo-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .ceo-content p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .ceo-signature {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 24px;
+            color: var(--primary);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            color: #777;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-card {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .ceo-message {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .ceo-photo {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Ad<span>Watch</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Rewards</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Earn Money Watching Ads</h1>
+            <p>Get paid 3₹ for every 10 ads you watch. It's that simple! Join thousands of users earning money in their spare time.</p>
+            <a href="#" class="btn">Start Earning Now</a>
+            <a href="#" class="btn btn-outline">Learn More</a>
+        </div>
+    </section>
+    
+    <div class="container">
+        <div class="dashboard">
+            <div class="stats">
+                <div class="stat-card">
+                    <h3 id="totalEarnings">0</h3>
+                    <p>Total Earnings</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="adsWatched">0</h3>
+                    <p>Ads Watched</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="availableBalance">0</h3>
+                    <p>Available Balance</p>
+                </div>
+                <div class="stat-card">
+                    <h3>3₹</h3>
+                    <p>Per 10 Ads</p>
+                </div>
+            </div>
+            
+            <div class="ad-container">
+                <h2>Ad <span id="currentAd">1</span>/10 - <span id="adTitle">Premium Advertisement</span></h2>
+                
+                <div class="progress-container">
+                    <div id="progressBar" class="progress-bar" style="width: 0%">0%</div>
+                </div>
+                
+                <div class="ad-content">
+                    <img id="adImage" src="https://via.placeholder.com/600x300?text=Premium+Ad+Placeholder" alt="Advertisement">
+                </div>
+                
+                <div class="timer" id="timer">00:30</div>
+                
+                <button id="watchBtn" class="btn">Start Watching</button>
+            </div>
+        </div>
+        
+        <div class="ceo-message">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="CEO Photo" class="ceo-photo">
+            <div class="ceo-content">
+                <h3>Message from Our CEO</h3>
+                <p>"At AdWatch, we're revolutionizing digital advertising by creating value for both brands and users. Our platform ensures fair compensation for your attention while delivering high-quality audiences to our advertising partners."</p>
+                <p>We're committed to transparency and user satisfaction. Watch ads on your schedule and earn real money with no hidden fees.</p>
+                <div class="ceo-signature">- Rajesh Kumar, Founder & CEO</div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">FAQ</a>
+                <a href="#">Contact Support</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 AdWatch Technologies. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // User data
+        let userData = {
+            totalEarnings: 0,
+            adsWatched: 0,
+            availableBalance: 0,
+            currentAd: 1,
+            timer: null,
+            timeLeft: 30,
+            adCompleted: false
+        };
+        
+        // Sample ads data (in real app, this would come from server)
+        const ads = [
+            { id: 1, title: "Tech Gadgets Sale", image: "https://via.placeholder.com/600x300?text=Tech+Gadgets+Sale" },
+            { id: 2, title: "Fashion Collection", image: "https://via.placeholder.com/600x300?text=New+Fashion+Collection" },
+            { id: 3, title: "Travel Deals", image: "https://via.placeholder.com/600x300?text=Amazing+Travel+Deals" },
+            { id: 4, title: "Food Delivery", image: "https://via.placeholder.com/600x300?text=Food+Delivery+Service" },
+            { id: 5, title: "Fitness App", image: "https://via.placeholder.com/600x300?text=Fitness+App+Promo" },
+            { id: 6, title: "Streaming Service", image: "https://via.placeholder.com/600x300?text=Streaming+Service" },
+            { id: 7, title: "Mobile Plans", image: "https://via.placeholder.com/600x300?text=Mobile+Plans+Offer" },
+            { id: 8, title: "Online Learning", image: "https://via.placeholder.com/600x300?text=Online+Learning+Platform" },
+            { id: 9, title: "Car Insurance", image: "https://via.placeholder.com/600x300?text=Car+Insurance+Deal" },
+            { id: 10, title: "Home Services", image: "https://via.placeholder.com/600x300?text=Home+Services+Ad" }
+        ];
+        
+        // DOM elements
+        const watchBtn = document.getElementById('watchBtn');
+        const timerDisplay = document.getElementById('timer');
+        const progressBar = document.getElementById('progressBar');
+        const currentAdDisplay = document.getElementById('currentAd');
+        const adTitleDisplay = document.getElementById('adTitle');
+        const adImage = document.getElementById('adImage');
+        
+        // Stats displays
+        const totalEarningsDisplay = document.getElementById('totalEarnings');
+        const adsWatchedDisplay = document.getElementById('adsWatched');
+        const availableBalanceDisplay = document.getElementById('availableBalance');
+        
+        // Initialize
+        function init() {
+            updateStats();
+            loadAd(userData.currentAd);
+        }
+        
+        // Load ad
+        function loadAd(adNumber) {
+            const ad = ads[adNumber - 1];
+            currentAdDisplay.textContent = adNumber;
+            adTitleDisplay.textContent = ad.title;
+            adImage.src = ad.image;
+            
+            // Reset timer
+            userData.timeLeft = 30;
+            timerDisplay.textContent = '00:30';
+            
+            // Reset button
+            watchBtn.textContent = 'Start Watching';
+            watchBtn.disabled = false;
+            userData.adCompleted = false;
+            
+            // Update progress
+            const progress = ((userData.currentAd - 1) / 10) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressBar.textContent = `${progress.toFixed(0)}%`;
+        }
+        
+        // Start watching ad
+        function startWatching() {
+            watchBtn.textContent = 'Watching...';
+            watchBtn.disabled = true;
+            
+            userData.timer = setInterval(() => {
+                userData.timeLeft--;
+                
+                // Format time display
+                const seconds = userData.timeLeft % 60;
+                timerDisplay.textContent = `00:${seconds < 10 ? '0' + seconds : seconds}`;
+                
+                if (userData.timeLeft <= 0) {
+                    completeAd();
+                }
+            }, 1000);
+        }
+        
+        // Complete ad
+        function completeAd() {
+            clearInterval(userData.timer);
+            userData.adCompleted = true;
+            userData.adsWatched++;
+            
+            // Update progress
+            const progress = (userData.currentAd / 10) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressBar.textContent = `${progress.toFixed(0)}%`;
+            
+            // Check if completed 10 ads
+            if (userData.currentAd >= 10) {
+                userData.availableBalance += 3;
+                userData.totalEarnings += 3;
+                watchBtn.textContent = 'Claim 3₹ Reward!';
+                watchBtn.onclick = claimReward;
+            } else {
+                watchBtn.textContent = 'Next Ad';
+                watchBtn.onclick = nextAd;
+            }
+            
+            watchBtn.disabled = false;
+            updateStats();
+        }
+        
+        // Next ad
+        function nextAd() {
+            userData.currentAd++;
+            loadAd(userData.currentAd);
+            watchBtn.onclick = startWatching;
+        }
+        
+        // Claim reward
+        function claimReward() {
+            alert('Congratulations! 3₹ has been added to your balance.');
+            userData.currentAd = 1;
+            loadAd(userData.currentAd);
+            watchBtn.onclick = startWatching;
+            updateStats();
+        }
+        
+        // Update stats display
+        function updateStats() {
+            totalEarningsDisplay.textContent = userData.totalEarnings;
+            adsWatchedDisplay.textContent = userData.adsWatched;
+            availableBalanceDisplay.textContent = userData.availableBalance;
+        }
+        
+        // Event listeners
+        watchBtn.addEventListener('click', startWatching);
+        
+        // Initialize the app
+        init();
+    </script>
+</body>
+                      </html>
